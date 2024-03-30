@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Entries</title>
+</head>
+<body>
+{% extends "test_app/default.html" %}
+
+{% block content %}
+<p>entries for {{ topic }}:</p>
+
+<ul>
+    {% for entry in entries %}
+    <li>
+        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ entry.text|linebreaks }}</p>
+        <p>
+            <a href="{% url 'test_app:edit_entry' entry.id %}">Edit</a>
+        </p>
+    </li>
+    {% empty %}
+    <h1>No Entries Yet!</h1>
+    {% endfor %}
+</ul>
+
+<h2>
+    <a href="{% url 'test_app:new_entry' topic.id %}">Add Entry!</a>
+</h2>
+
+{% endblock content %}
+</body>
+</html>

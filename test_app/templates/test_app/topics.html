@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topics</title>
+</head>
+<body>
+{% extends "test_app/default.html" %}
+
+{% block content %}
+
+<p>Topics</p>
+
+<ul>
+    {% for topic in topics %}
+    <li>
+        <a href="{% url 'test_app:topic' topic.id %}">{{ topic }}</a>
+    </li>
+    {% empty %}
+    <h1>No Topics Yet!</h1>
+    {% endfor %}
+</ul>
+
+<br>
+
+<h2>
+    <a href="{% url 'test_app:new_topic' %}">Add Another Topic!</a>
+</h2>
+{% endblock content %}
+</body>
+</html>

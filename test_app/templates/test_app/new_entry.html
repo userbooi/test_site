@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Entry</title>
+</head>
+<body>
+{% extends 'test_app/default.html' %}
+
+{% block content %}
+<p>
+    Add a new entry for
+    <a href="{% url 'test_app:topic' topic.id%}">{{ topic }}</a>
+</p>
+
+<form action="{% url 'test_app:new_entry' topic.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button name="submit">Add Entry!</button>
+</form>
+{% endblock content %}
+</body>
+</html>
