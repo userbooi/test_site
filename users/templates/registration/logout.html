@@ -7,8 +7,14 @@
 <body>
 {% extends 'test_app/default.html' %}
 
-{% block content %}
-<h1>You have been logged out</h1>
-{% endblock content %}
+{% block page_header %}
+<div class="jumbotron">
+  <h1 class="display-4">You have been logged out</h1>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'test_app:index' %}" role="button">Learning Log</a>
+  </p>
+</div>
+<h1></h1>
+{% endblock page_header %}
 </body>
 </html>

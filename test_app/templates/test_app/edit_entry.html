@@ -6,19 +6,26 @@
 </head>
 <body>
 {% extends 'test_app/default.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h2>
+    Edit an Entry For
+    <a href="{% url 'test_app:topic' topic.id %}">{{ topic }}</a>
+</h2>
+{% endblock page_header %}
 
 {% block content %}
-<p>
-    Edit an entry for
-    <a href="{% url 'test_app:topic' topic.id%}">{{ topic }}</a>
-</p>
 
-<form action="{% url 'test_app:edit_entry' entry.id %}" method="post">
+<form method="post" action="{% url 'test_app:edit_entry' entry.id %}" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
 
-    <button name="submit">Save Changes</button>
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Save Changes</button>
+    {% endbuttons %}
 </form>
-{% endblock content %}
+
+{% endblock %}
 </body>
 </html>

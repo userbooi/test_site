@@ -6,13 +6,20 @@
 </head>
 <body>
 {% extends 'test_app/default.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h2>Register an Account</h2>
+{% endblock page_header %}
 
 {% block content %}
-<form action="{% url 'users:register' %}" method="post">
+<form action="{% url 'users:register' %}" method="post" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
 
-    <button name="submit">Register</button>
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Register</button>
+    {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'test_app:index' %}"/>
 </form>
 {% endblock content %}

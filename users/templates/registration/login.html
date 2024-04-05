@@ -6,18 +6,21 @@
 </head>
 <body>
 {% extends 'test_app/default.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h2>Login to Your Account</h2>
+{% endblock page_header %}
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username did not match. Please try again</p>
-{% endif %}
-
-<form method="post" action="{% url 'users:login_user' %}">
+<form method="post" action="{% url 'users:login_user' %}" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
 
-    <button name="submit">Log in</button>
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Log in</button>
+    {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'test_app:index' %}" />
 </form>
 

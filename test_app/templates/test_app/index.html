@@ -7,10 +7,16 @@
 <body>
 {% extends "test_app/default.html" %}
 
-{% block content %}
+{% block page_header %}
 
-<p>This site is used to test any HTML things and web designing things</p>
+<div class="jumbotron">
+  <h1 class="display-4">The Ultimate Test Site</h1>
+  <p class="lead">This site is used to test any HTML things and web designing things</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'users:register' %}" role="button">Register>></a>
+  </p>
+</div>
 
-{% endblock content %}
+{% endblock page_header %}
 </body>
 </html>

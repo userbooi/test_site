@@ -7,6 +7,10 @@
 <body>
 {% extends "test_app/default.html" %}
 
+{% block page_header %}
+<h2>Topics</h2>
+{% endblock page_header %}
+
 {% block content %}
 
 <p>Topics</p>
@@ -14,18 +18,22 @@
 <ul>
     {% for topic in topics %}
     <li>
-        <a href="{% url 'test_app:topic' topic.id %}">{{ topic }}</a>
+        <h3>
+            <a href="{% url 'test_app:topic' topic.id %}">{{ topic }}</a>
+        </h3>
     </li>
     {% empty %}
-    <h1>No Topics Yet!</h1>
+    <li>
+        <h3>No Topics Yet!</h3>
+    </li>
     {% endfor %}
 </ul>
 
 <br>
 
-<h2>
+<h3>
     <a href="{% url 'test_app:new_topic' %}">Add Another Topic!</a>
-</h2>
+</h3>
 {% endblock content %}
 </body>
 </html>

@@ -7,22 +7,27 @@
 <body>
 {% extends "test_app/default.html" %}
 
-{% block content %}
-<p>entries for {{ topic }}:</p>
+{% block page_header %}
+<h3>Entries for {{ topic }}:</h3>
+{% endblock page_header %}
 
-<ul>
-    {% for entry in entries %}
-    <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-        <p>{{ entry.text|linebreaks }}</p>
-        <p>
+{% block content %}
+
+{% for entry in entries %}
+<div class="class mb-3">
+    <h4 class="card-header">
+        {{ entry.date_added|date:'M d, Y H:i' }}
+        <small>
             <a href="{% url 'test_app:edit_entry' entry.id %}">Edit</a>
-        </p>
-    </li>
-    {% empty %}
-    <h1>No Entries Yet!</h1>
-    {% endfor %}
-</ul>
+        </small>
+    </h4>
+    <div class="card-body">
+        {{ entry.text|linebreaks }}
+    </div>
+</div>
+{% empty %}
+<p>No Entries Yet!</p>
+{% endfor %}
 
 <h2>
     <a href="{% url 'test_app:new_entry' topic.id %}">Add Entry!</a>

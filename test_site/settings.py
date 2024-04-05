@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test_app',
     'users',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# URL TO REDIRECT LOGIN_REQUIRED
 LOGIN_URL = 'users:login_user'
 
 # Default primary key field type
